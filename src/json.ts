@@ -90,6 +90,9 @@ export default (ins: Feed) => {
 
     return feedItem;
   });
+  feed.toString = () => {
+    return JSON.stringify(feed, null, 4);
+  };
 
-  return JSON.stringify(feed, null, 4);
+  return feed;
 };

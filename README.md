@@ -98,6 +98,15 @@ console.log(feed.json1());
 // Output: JSON Feed 1.0
 ```
 
+## What with the fork ?
+
+Because Pageboard needed a way to include some fixes and let user change the xml before serializing,
+this feature has been added:
+
+The output of feed.rss2, atom1, json1 methods is now the xml or json object, with an additional
+toString method that serializes the object, allowing for some modifications before serialization.
+
+
 ## Migrating from `< 3.0.0`
 
 If you are migrating from a version older than `3.0.0`, be sure to update your import as we migrated to ES6 named imports.

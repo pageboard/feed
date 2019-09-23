@@ -150,8 +150,11 @@ export default (ins: Feed) => {
 
     base.feed.entry.push(entry);
   });
+  base.toString = () => {
+    return convert.js2xml(base, { compact: true, ignoreComment: true, spaces: 4 });
+  };
 
-  return convert.js2xml(base, { compact: true, ignoreComment: true, spaces: 4 });
+  return base;
 };
 
 const formatAuthor = (author: Author) => {

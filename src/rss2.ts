@@ -159,5 +159,8 @@ export default (ins: Feed) => {
   if (isAtom) {
     base.rss._attributes["xmlns:atom"] = "http://www.w3.org/2005/Atom";
   }
-  return convert.js2xml(base, { compact: true, ignoreComment: true, spaces: 4 });
+  base.toString = () => {
+    return convert.js2xml(base, { compact: true, ignoreComment: true, spaces: 4 });
+  };
+  return base;
 };
