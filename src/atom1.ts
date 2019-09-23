@@ -88,7 +88,8 @@ export default (ins: Feed) => {
       title: { _attributes: { type: "html" }, _cdata: item.title },
       id: item.id || item.link,
       link: [{ _attributes: { href: item.link } }],
-      updated: item.date.toISOString()
+      updated: item.date.toISOString(),
+      content: []
     };
 
     //
@@ -101,11 +102,20 @@ export default (ins: Feed) => {
       };
     }
 
+    let image: any = item.image;
+    if (image) {
+      if (typeof image == "string") image = { src: image, type: 'image' };
+      else if (image.url) image = { src: image.url, type: image.type || 'image' };
+      entry.content.push({
+        _attributes: image
+      });
+    }
+
     if (item.content) {
-      entry.content = {
+      entry.content.push({
         _attributes: { type: "html" },
         _cdata: item.content
-      };
+      });
     }
 
     // entry author(s)
